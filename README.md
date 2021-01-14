@@ -4,6 +4,10 @@
 
 blockies是一个生成块状图标的小程序库, 仿照[此项目](https://github.com/download13/blockies)所写的python版本
 
+## screenshots
+
+![](https://i.loli.net/2021/01/15/W1ne4ALQXhR7TKM.png)
+
 ## Usage
 
 ```Python
