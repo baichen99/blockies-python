@@ -72,11 +72,16 @@ def createMirrorData(option):
   return data
 
 
-def RenderImg(opt, data):
+def RenderImg(opt):
   def fillColor(row, col, color, scale):
     for i in range(row*scale, (row+1)*scale):
       for j in range(col*scale, (col+1)*scale):
         img[i,j,:] = color
+  
+  if opt.mirror:
+    data = createMirrorData(opt)
+  else:
+    data = createImgData(opt)
 
   img = numpy.zeros((opt.height, opt.width, 3), dtype=numpy.uint8)
   for i in range(opt.size):
@@ -90,11 +95,7 @@ def RenderImg(opt, data):
   return img
 
 def CreateIcon(opt, outputPath):
-  if opt.mirror:
-    data = createMirrorData(opt)
-  else:
-    data = createImgData(opt)
-  img = RenderImg(opt, data)
+  img = RenderImg(opt)
   cv2.imwrite(outputPath, img)
 
 if __name__ == '__main__':
