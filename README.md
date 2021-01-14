@@ -24,3 +24,11 @@ spot = [22, 22, 22]
 option = Option(size=12, scale=4, seed='seedString', bgColor=bg, foreColor=fore, spotColor=spot)
 CreateIcon(option, './output.png')
 ```
+
+### Create mirror icon
+
+createIcon create a Mirror image by default, you can change that by passing mirror to option
+
+```python
+option = Option(size=12, scale=4, seed='seedString', mirror=False)
+```

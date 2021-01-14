@@ -5,13 +5,14 @@ import numpy
 import hashlib
 
 class Option:
-  def __init__(self, size, scale, seed='seedstring', bgColor=None, foreColor=None, spotColor=None):
+  def __init__(self, size, scale, seed='seedstring', bgColor=None, foreColor=None, spotColor=None, mirror=None):
     # size 是一行的方格数量
     # scale 是一个方格所占像素数量
     self.size = size
     self.scale = scale
     self.width = size * scale
     self.height = size * scale
+    self.mirror = mirror || True
 
     # 把seedstring转换成数字
     md5obj = hashlib.md5()
@@ -54,6 +55,23 @@ def createImgData(option):
       data[i][j] = math.floor(rand()*2.3)
   return data
 
+def createMirrorData(option):
+  data = numpy.zeros((option.size, option.size), dtype=numpy.int)
+  height = option.size
+  width = option.size
+  dataWidth = math.ceil(width / 2)
+  mirrorWidth = width - dataWidth
+  for i in range(height):
+    row = [0] * dataWidth
+    for j in range(dataWidth):
+      row[j] = math.floor(rand()*2.3)
+    r = row[0:dataWidth]
+    r.reverse()
+    row.extend(r)
+    data[i,:] = row
+  return data
+
+
 def RenderImg(opt, data):
   def fillColor(row, col, color, scale):
     for i in range(row*scale, (row+1)*scale):
@@ -72,8 +90,10 @@ def RenderImg(opt, data):
   return img
 
 def CreateIcon(opt, outputPath):
-  data = createImgData(opt)
-  print(data)
+  if opt.mirror:
+    data = createMirrorData(opt)
+  else:
+    data = createImgData(opt)
   img = RenderImg(opt, data)
   cv2.imwrite(outputPath, img)
 
