@@ -1,7 +1,7 @@
 from blockies.blockies import Option, CreateIcon
 
-bg = [0, 233, 233]
-fore = [123, 0, 123]
-spot = [22, 22, 233]
-option = Option(size=12, scale=4, seed='seedString', bgColor=bg, foreColor=fore, spotColor=spot)
+bg = [134, 85, 36]
+fore = [245, 14, 249]
+spot = [54, 52, 210]
+option = Option(size=10, scale=4, seed='seedString', bgColor=bg, foreColor=fore, spotColor=spot)
 CreateIcon(option, './output.png')

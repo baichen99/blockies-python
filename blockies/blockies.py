@@ -12,7 +12,7 @@ class Option:
     self.scale = scale
     self.width = size * scale
     self.height = size * scale
-    self.mirror = mirror || True
+    self.mirror = mirror or True
 
     # 把seedstring转换成数字
     md5obj = hashlib.md5()
